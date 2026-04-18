@@ -1,41 +1,34 @@
 # Aldo
 
-![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)
+This repository contains my personal static portfolio website, published with GitHub Pages.
 
-Benvenuto nella repository **Aldo**! 🚀 Questo progetto ospita un sito web statico pubblicato su **GitHub Pages**.
+Live site: [https://LoCh3f.github.io/Aldo/](https://LoCh3f.github.io/Aldo/)
 
-## 🌐 Link al sito
-🔗 [Visita il sito](https://LoCh3f.github.io/Aldo/) 
+## Project structure
 
-## 📁 Struttura del Progetto
-
-```
+```text
 Aldo/
-│── index.html    # Pagina principale
-│── style.css     # Stili CSS
-│── script.js     # Script JavaScript
-│── assets/       # Cartella per immagini o altri file
-│── .nojekyll     # (Opzionale) Per disattivare Jekyll
-│── README.md     # Questo file
+|- index.html
+|- styles.css
+|- assets/
+`- README.md
 ```
 
-## 🚀 Come visualizzare il progetto localmente
-Se vuoi testare il sito in locale, segui questi passaggi:
+## Run locally
 
-1. **Clona il repository**
-   ```bash
-   git clone https://github.com/LoCh3f/Aldo.git
-   ```
-2. **Apri il file `index.html` nel browser**
-   - Basta fare doppio clic su `index.html` oppure avviare un server locale con Python:
-     ```bash
-     python -m http.server 8000
-     ```
-     e aprire `http://localhost:8000/` nel browser.
+You can open `index.html` directly in your browser, but using a local server is usually better.
 
-## 📌 Note
-- Assicurati che `index.html` sia nella root del repository per funzionare correttamente con GitHub Pages.
-- Se il sito non viene visualizzato, verifica che GitHub Pages sia attivato in **Settings → Pages**.
+```bash
+python -m http.server 8000
+```
 
----
-**Creato con ❤️ da [LoCh3f](https://github.com/LoCh3f)**
+Then open [http://localhost:8000](http://localhost:8000).
+
+## Notes
+
+- This is a simple static site (HTML + CSS), so no build step is required.
+- For GitHub Pages, `index.html` should stay in the repository root.
+
+## Author
+
+[LoCh3f](https://github.com/LoCh3f)
