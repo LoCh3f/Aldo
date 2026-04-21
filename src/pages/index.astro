@@ -64,6 +64,11 @@ const socialLinks = [
   { label: 'GitHub', href: 'https://github.com/LoCh3f' },
   { label: 'Email', href: 'mailto:l.c.aldovisconti@gmail.com' },
 ];
+
+const siteUrl = 'https://loch3f.github.io';
+const basePath = '/Aldo';
+const canonicalUrl = `${siteUrl}${basePath}/`;
+const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
 ---
 
 <!doctype html>
@@ -72,6 +77,20 @@ const socialLinks = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Aldo Visconti - Software Engineer & MSc Student. Building reliable software with a practical, product-first mindset." />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aldo Visconti | Software Engineer" />
+    <meta property="og:description" content="Software Engineer & MSc Student building reliable software with a practical, product-first mindset." />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content="Aldo Visconti" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aldo Visconti | Software Engineer" />
+    <meta name="twitter:description" content="Software Engineer & MSc Student building reliable software with a practical, product-first mindset." />
+    <meta name="twitter:image" content={socialImage} />
+
     <title>Aldo Visconti | Software Engineer</title>
   </head>
   <body>
