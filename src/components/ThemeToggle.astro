@@ -6,6 +6,7 @@
 
 <button
   id="theme-toggle"
+  type="button"
   class="theme-toggle"
   aria-label="Switch to dark mode"
   title="Toggle dark/light mode"
@@ -104,6 +105,35 @@
 
 <script is:inline>
   (function initTheme() {
+    const themeTokens = {
+      light: {
+        '--color-bg': '#f7f6f2',
+        '--color-surface': '#f9f8f5',
+        '--color-surface-offset': '#edeae5',
+        '--color-border': '#d4d1ca',
+        '--color-text': '#28251d',
+        '--color-text-muted': '#7a7974',
+        '--color-text-faint': '#bab9b4',
+        '--color-primary': '#01696f',
+        '--color-primary-hover': '#0c4e54',
+        '--shadow-sm': '0 1px 2px oklch(0.2 0.01 80 / 0.06)',
+        '--shadow-md': '0 4px 12px oklch(0.2 0.01 80 / 0.08)',
+      },
+      dark: {
+        '--color-bg': '#171614',
+        '--color-surface': '#1c1b19',
+        '--color-surface-offset': '#22211f',
+        '--color-border': '#393836',
+        '--color-text': '#cdccca',
+        '--color-text-muted': '#797876',
+        '--color-text-faint': '#5a5957',
+        '--color-primary': '#4f98a3',
+        '--color-primary-hover': '#227f8b',
+        '--shadow-sm': '0 1px 2px oklch(0 0 0 / 0.2)',
+        '--shadow-md': '0 4px 12px oklch(0 0 0 / 0.3)',
+      },
+    };
+
     let currentTheme = detectSystemTheme();
 
     function detectSystemTheme() {
@@ -111,17 +141,23 @@
       if (htmlTheme === 'dark' || htmlTheme === 'light') {
         return htmlTheme;
       }
+
       return window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'
         : 'light';
     }
 
     function applyTheme(theme) {
-      if (theme === 'light') {
-        document.documentElement.removeAttribute('data-theme');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
+      const root = document.documentElement;
+      const variables = themeTokens[theme];
+
+      root.setAttribute('data-theme', theme);
+      root.style.colorScheme = theme;
+
+      for (const [name, value] of Object.entries(variables)) {
+        root.style.setProperty(name, value);
       }
+
       currentTheme = theme;
       updateToggleButton();
     }
@@ -142,20 +178,18 @@
       applyTheme(newTheme);
     }
 
-    // Ensure DOM is ready
     function init() {
       const toggle = document.getElementById('theme-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', toggleTheme);
-        updateToggleButton();
-      }
+      if (!toggle) return;
+
+      toggle.addEventListener('click', toggleTheme);
+      updateToggleButton();
     }
 
-    // Initialize theme on page load
     applyTheme(currentTheme);
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
+      document.addEventListener('DOMContentLoaded', init, { once: true });
     } else {
       init();
     }
