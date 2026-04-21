@@ -62,8 +62,8 @@
 
 /* ===== LAYOUT TOKENS ===== */
 :root {
-  --max-width: 960px;
-  --padding-inline: clamp(1rem, 2vw, 1.5rem);
+  --max-width: 1120px;
+  --padding-inline: clamp(1rem, 3vw, 2rem);
   --spacing-section: clamp(3rem, 6vw, 6rem);
   --prose-width: 65ch;
 }
@@ -90,7 +90,23 @@ body {
   background-color: var(--color-bg);
   line-height: 1.6;
   min-height: 100dvh;
+  display: flex;
+  justify-content: center;
   transition: background-color 200ms ease, color 200ms ease;
+}
+
+body > * {
+  width: 100%;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top left, oklch(from var(--color-primary) l c h / 0.08), transparent 35%),
+    radial-gradient(circle at top right, oklch(from var(--color-primary-hover) l c h / 0.06), transparent 32%);
 }
 
 img,
@@ -167,6 +183,10 @@ strong {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: var(--padding-inline);
+}
+
+.page-shell {
+  width: min(100%, 1280px);
 }
 
 .prose {

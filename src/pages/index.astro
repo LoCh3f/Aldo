@@ -75,94 +75,96 @@ const socialLinks = [
     <title>Aldo Visconti | Software Engineer</title>
   </head>
   <body>
-    <Navbar navLinks={navLinks} />
+    <div class="page-shell">
+      <Navbar navLinks={navLinks} />
 
-    <main>
-      {/* Hero Section */}
-      <Hero
-        title="Aldo Visconti"
-        tagline="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."
-        ctaPrimary={{ label: 'View Projects', href: '#projects' }}
-        ctaSecondary={{ label: 'Email Me', href: 'mailto:l.c.aldovisconti@gmail.com' }}
-      />
+      <main>
+        {/* Hero Section */}
+        <Hero
+          title="Aldo Visconti"
+          tagline="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."
+          ctaPrimary={{ label: 'View Projects', href: '#projects' }}
+          ctaSecondary={{ label: 'Email Me', href: 'mailto:l.c.aldovisconti@gmail.com' }}
+        />
 
-      {/* About Section */}
-      <section id="about" class="section">
-        <div class="container">
-          <h2>About</h2>
-          <p class="prose">
-            I graduated in Engineering and Computer Sciences at Alma Mater Studiorum - University of Bologna. I am now pursuing a Master's degree while continuing to turn technical complexity into clean user experiences.
-          </p>
-          <p class="prose text-muted">
-            I am passionate about software development and motivated by curiosity: I like to understand how things work, explore new technologies, and keep improving every day. I enjoy solving problems, learning from real projects, and stepping into new challenges with an open and proactive mindset.
-          </p>
-        </div>
-      </section>
+        {/* About Section */}
+        <section id="about" class="section">
+          <div class="container">
+            <h2>About</h2>
+            <p class="prose">
+              I graduated in Engineering and Computer Sciences at Alma Mater Studiorum - University of Bologna. I am now pursuing a Master's degree while continuing to turn technical complexity into clean user experiences.
+            </p>
+            <p class="prose text-muted">
+              I am passionate about software development and motivated by curiosity: I like to understand how things work, explore new technologies, and keep improving every day. I enjoy solving problems, learning from real projects, and stepping into new challenges with an open and proactive mindset.
+            </p>
+          </div>
+        </section>
 
-      {/* Experience Section */}
-      <section class="section">
-        <div class="container">
-          <h2>Experience</h2>
-          <div class="experience-list">
-            <div class="experience-item">
-              <p class="text-xs text-faint">Imola, Italy · Mar 2024 - May 2024</p>
-              <h3>CP SISTEMI · Software Engineer Intern</h3>
-              <p class="text-muted">Ported industrial communication drivers from Java into a new framework for firmware adaptation.</p>
+        {/* Experience Section */}
+        <section class="section">
+          <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-list">
+              <div class="experience-item">
+                <p class="text-xs text-faint">Imola, Italy · Mar 2024 - May 2024</p>
+                <h3>CP SISTEMI · Software Engineer Intern</h3>
+                <p class="text-muted">Ported industrial communication drivers from Java into a new framework for firmware adaptation.</p>
+              </div>
+              <div class="experience-item">
+                <p class="text-xs text-faint">Crotone, Italy · Aug 2020 - Oct 2020</p>
+                <h3>RENTBOAT · Front Office Manager</h3>
+                <p class="text-muted">Managed check-in/check-out, booking workflows, and fleet maintenance coordination.</p>
+              </div>
             </div>
-            <div class="experience-item">
-              <p class="text-xs text-faint">Crotone, Italy · Aug 2020 - Oct 2020</p>
-              <h3>RENTBOAT · Front Office Manager</h3>
-              <p class="text-muted">Managed check-in/check-out, booking workflows, and fleet maintenance coordination.</p>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" class="section">
+          <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+              {projects.map((project) => (
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  tags={project.tags}
+                  link={project.link}
+                />
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects" class="section">
-        <div class="container">
-          <h2>Projects</h2>
-          <div class="projects-grid">
-            {projects.map((project) => (
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                tags={project.tags}
-                link={project.link}
-              />
-            ))}
+        {/* Skills Section */}
+        <section class="section">
+          <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-list">
+              {skills.map((skill) => (
+                <span class="skill-item">{skill}</span>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Skills Section */}
-      <section class="section">
-        <div class="container">
-          <h2>Skills</h2>
-          <div class="skills-list">
-            {skills.map((skill) => (
-              <span class="skill-item">{skill}</span>
-            ))}
+        {/* Contact Section */}
+        <section id="contact" class="section">
+          <div class="container">
+            <h2>Contact</h2>
+            <p class="prose text-muted">Open to internship and junior software opportunities.</p>
+            <p class="prose">
+              Email: <a href="mailto:l.c.aldovisconti@gmail.com">l.c.aldovisconti@gmail.com</a>
+            </p>
+            <p class="prose">
+              GitHub: <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer">github.com/LoCh3f</a>
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Contact Section */}
-      <section id="contact" class="section">
-        <div class="container">
-          <h2>Contact</h2>
-          <p class="prose text-muted">Open to internship and junior software opportunities.</p>
-          <p class="prose">
-            Email: <a href="mailto:l.c.aldovisconti@gmail.com">l.c.aldovisconti@gmail.com</a>
-          </p>
-          <p class="prose">
-            GitHub: <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer">github.com/LoCh3f</a>
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <Footer name="Aldo Visconti" social={socialLinks} />
+      <Footer name="Aldo Visconti" social={socialLinks} />
+    </div>
   </body>
 </html>
 
