@@ -1,0 +1,147 @@
+---
+import '../styles/global.css';
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Aldo Visconti | Software Portfolio</title>
+    <meta name="description" content="Portfolio of Aldo Visconti, software engineer and MSc student." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-shape background-shape-left" aria-hidden="true"></div>
+    <div class="background-shape background-shape-right" aria-hidden="true"></div>
+
+    <header class="hero" id="top">
+      <nav class="top-nav" aria-label="Primary">
+        <a class="brand" href="#top">Aldo Visconti</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">Software Engineer · MSc Student</p>
+          <h1>Building reliable software with a practical, product-first mindset.</h1>
+          <p>
+            I graduated in Engineering and Computer Sciences at Alma Mater Studiorum - University of Bologna.
+            I am now pursuing a Master's degree while continuing to turn technical complexity into clean user experiences.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">Explore Projects</a>
+            <a class="button button-ghost" href="mailto:l.c.aldovisconti@gmail.com">Email Me</a>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <img src="/assets/aldo.jpg" alt="Portrait of Aldo Visconti" class="hero-photo" />
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel" id="about">
+        <h2>About</h2>
+        <p>
+          I am passionate about software development and motivated by curiosity: I like to understand how things work,
+          explore new technologies, and keep improving every day. I enjoy solving problems, learning from real projects,
+          and stepping into new challenges with an open and proactive mindset.
+        </p>
+      </section>
+
+      <section class="panel" id="experience">
+        <h2>Experience</h2>
+        <div class="card-grid">
+          <article class="card">
+            <p class="card-meta">Imola, Italy · Mar 2024 - May 2024</p>
+            <h3>CP SISTEMI · Software Engineer Intern</h3>
+            <p>Ported industrial communication drivers from Java into a new framework for firmware adaptation.</p>
+          </article>
+          <article class="card">
+            <p class="card-meta">Crotone, Italy · Aug 2020 - Oct 2020</p>
+            <h3>RENTBOAT · Front Office Manager</h3>
+            <p>Managed check-in/check-out, booking workflows, and fleet maintenance coordination.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="projects">
+        <h2>Projects</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>PixArt</h3>
+            <p>Pixel art editor built with Java and JavaFX, including mini-games and custom drawing tools.</p>
+            <a href="https://github.com/LoCh3f/OOP22-pixArt-gen" target="_blank" rel="noreferrer">View on GitHub</a>
+          </article>
+          <article class="card">
+            <h3>AgroNET</h3>
+            <p>Social network platform for agriculture professionals developed with HTML, CSS, JS, PHP and SQL.</p>
+            <a href="https://github.com/Fre0Grella/AgroNET" target="_blank" rel="noreferrer">View on GitHub</a>
+          </article>
+          <article class="card">
+            <h3>ScoutKT</h3>
+            <p>Real-time crypto market tracking app made in Kotlin with Jetpack Compose.</p>
+            <a href="https://github.com/LoCh3f/ScoutKT" target="_blank" rel="noreferrer">View on GitHub</a>
+          </article>
+          <article class="card">
+            <h3>Orbital (Work in progress)</h3>
+            <p>
+              Microservices platform that aggregates real-time cryptocurrency market data and financial news, with RESTful APIs,
+              Docker-based deployment, and monitoring through Prometheus and Grafana.
+            </p>
+            <a href="https://github.com/LoCh3f/orbital" target="_blank" rel="noreferrer">View on GitHub</a>
+          </article>
+          <article class="card">
+            <h3>Poool Game</h3>
+            <p>
+              Concurrent pool-like game developed for PCD (a.y. 2025-2026, ISI LM UNIBO Cesena), where a human player and a bot
+              compete through physics simulation.
+            </p>
+            <a href="https://github.com/LoCh3f/assigment-1" target="_blank" rel="noreferrer">View on GitHub</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="skills">
+        <h2>Skills</h2>
+        <ul class="skill-list" aria-label="Skills and technologies">
+          <li>Assembly (IA-32)</li>
+          <li>C</li>
+          <li>C#</li>
+          <li>Java</li>
+          <li>Kotlin</li>
+          <li>SQL</li>
+          <li>PHP</li>
+          <li>JavaScript</li>
+          <li>HTML/CSS</li>
+          <li>Git</li>
+          <li>Docker</li>
+          <li>Verse for Unreal Engine</li>
+        </ul>
+      </section>
+
+      <section class="panel panel-contact" id="contact">
+        <h2>Contact</h2>
+        <p>Open to internship and junior software opportunities.</p>
+        <p>Email: <a href="mailto:l.c.aldovisconti@gmail.com">l.c.aldovisconti@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer">github.com/LoCh3f</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; {year} Aldo Visconti. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
