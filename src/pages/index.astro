@@ -75,10 +75,12 @@ const socialLinks = [
     <title>Aldo Visconti | Software Engineer</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <div class="page-shell">
       <Navbar navLinks={navLinks} />
 
-      <main>
+      <main id="main-content">
         {/* Hero Section */}
         <Hero
           title="Aldo Visconti"
@@ -175,6 +177,7 @@ const socialLinks = [
 
   .section {
     padding-block: var(--spacing-section);
+    scroll-margin-top: 6.5rem;
     border-bottom: 1px solid oklch(from var(--color-border) l c h / 0.5);
   }
 
