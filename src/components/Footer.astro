@@ -12,6 +12,8 @@ interface Props {
 
 const currentYear = new Date().getFullYear();
 const { name = 'Aldo Visconti', year = currentYear, social = [] } = Astro.props;
+
+const isExternalLink = (href: string) => /^https?:\/\//.test(href);
 ---
 
 <footer class="footer">
@@ -25,8 +27,8 @@ const { name = 'Aldo Visconti', year = currentYear, social = [] } = Astro.props;
         {social.map((link) => (
           <a
             href={link.href}
-            target="_blank"
-            rel="noreferrer"
+            target={isExternalLink(link.href) ? '_blank' : undefined}
+            rel={isExternalLink(link.href) ? 'noreferrer noopener' : undefined}
             class="social-link text-xs"
           >
             {link.label}

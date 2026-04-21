@@ -22,7 +22,7 @@ const { title, description, tags = [], link } = Astro.props;
   )}
 
   {link && (
-    <a href={link} target="_blank" rel="noreferrer" class="card-link">
+    <a href={link} target="_blank" rel="noreferrer noopener" class="card-link">
       View Project
     </a>
   )}

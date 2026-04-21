@@ -6,11 +6,12 @@ interface Props {
 }
 
 const { navLinks = [] } = Astro.props;
+const homeHref = import.meta.env.BASE_URL;
 ---
 
 <nav class="navbar" aria-label="Primary navigation">
   <div class="navbar-container">
-    <a href="/Aldo/" class="navbar-brand">Aldo Visconti</a>
+    <a href={homeHref} class="navbar-brand">Aldo Visconti</a>
 
     <div class="navbar-links">
       {navLinks.map((link) => (

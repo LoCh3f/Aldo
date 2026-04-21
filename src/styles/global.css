@@ -90,13 +90,7 @@ body {
   background-color: var(--color-bg);
   line-height: 1.6;
   min-height: 100dvh;
-  display: flex;
-  justify-content: center;
   transition: background-color 200ms ease, color 200ms ease;
-}
-
-body > * {
-  width: 100%;
 }
 
 body::before {
@@ -203,6 +197,7 @@ strong {
 
 .page-shell {
   width: min(100%, 1280px);
+  margin-inline: auto;
 }
 
 .prose {
