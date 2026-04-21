@@ -32,7 +32,7 @@ npm install
 npm run dev
 ```
 
-Then open [http://localhost:4321](http://localhost:4321).
+Then open [http://localhost:4321/Aldo](http://localhost:4321/Aldo). If that port is busy, Astro will print the next available port and keep the `/Aldo` base path.
 
 ## Build
 
@@ -41,6 +41,10 @@ npm run build
 ```
 
 The production output is generated in `dist/`.
+
+## Deploy
+
+The site is configured for GitHub Pages project hosting at [https://LoCh3f.github.io/Aldo/](https://LoCh3f.github.io/Aldo/).
 
 ## Notes
 
