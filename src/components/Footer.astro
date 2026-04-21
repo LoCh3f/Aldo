@@ -1,0 +1,81 @@
+---
+interface SocialLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  name?: string;
+  year?: number;
+  social?: SocialLink[];
+}
+
+const currentYear = new Date().getFullYear();
+const { name = 'Aldo Visconti', year = currentYear, social = [] } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container footer-container">
+    <p class="footer-copy text-xs">
+      © {year} {name}. All rights reserved.
+    </p>
+
+    {social.length > 0 && (
+      <div class="footer-social">
+        {social.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            class="social-link text-xs"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: 2rem;
+    margin-top: var(--spacing-section);
+    transition: border-color 200ms ease;
+  }
+
+  .footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copy {
+    color: var(--color-text-faint);
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .social-link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .social-link:hover {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

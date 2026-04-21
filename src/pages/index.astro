@@ -1,147 +1,236 @@
 ---
 import '../styles/global.css';
-const year = new Date().getFullYear();
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Footer from '../components/Footer.astro';
+
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const projects = [
+  {
+    title: 'PixArt',
+    description: 'Pixel art editor built with Java and JavaFX, including mini-games and custom drawing tools.',
+    tags: ['Java', 'JavaFX', 'Graphics'],
+    link: 'https://github.com/LoCh3f/OOP22-pixArt-gen',
+  },
+  {
+    title: 'AgroNET',
+    description: 'Social network platform for agriculture professionals developed with HTML, CSS, JS, PHP and SQL.',
+    tags: ['PHP', 'SQL', 'Web'],
+    link: 'https://github.com/Fre0Grella/AgroNET',
+  },
+  {
+    title: 'ScoutKT',
+    description: 'Real-time crypto market tracking app made in Kotlin with Jetpack Compose.',
+    tags: ['Kotlin', 'Android', 'Compose'],
+    link: 'https://github.com/LoCh3f/ScoutKT',
+  },
+  {
+    title: 'Orbital',
+    description: 'Microservices platform that aggregates real-time cryptocurrency market data and financial news, with RESTful APIs, Docker-based deployment, and monitoring through Prometheus and Grafana.',
+    tags: ['Docker', 'Microservices', 'Crypto'],
+    link: 'https://github.com/LoCh3f/orbital',
+  },
+  {
+    title: 'Poool Game',
+    description: 'Concurrent pool-like game developed for PCD, where a human player and a bot compete through physics simulation.',
+    tags: ['Java', 'Concurrency', 'Physics'],
+    link: 'https://github.com/LoCh3f/assigment-1',
+  },
+];
+
+const skills = [
+  'Assembly (IA-32)',
+  'C',
+  'C#',
+  'Java',
+  'Kotlin',
+  'SQL',
+  'PHP',
+  'JavaScript',
+  'TypeScript',
+  'HTML/CSS',
+  'Git',
+  'Docker',
+  'Verse for Unreal Engine',
+];
+
+const socialLinks = [
+  { label: 'GitHub', href: 'https://github.com/LoCh3f' },
+  { label: 'Email', href: 'mailto:l.c.aldovisconti@gmail.com' },
+];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Aldo Visconti | Software Portfolio</title>
-    <meta name="description" content="Portfolio of Aldo Visconti, software engineer and MSc student." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Aldo Visconti - Software Engineer & MSc Student. Building reliable software with a practical, product-first mindset." />
+    <title>Aldo Visconti | Software Engineer</title>
   </head>
   <body>
-    <div class="background-shape background-shape-left" aria-hidden="true"></div>
-    <div class="background-shape background-shape-right" aria-hidden="true"></div>
+    <Navbar navLinks={navLinks} />
 
-    <header class="hero" id="top">
-      <nav class="top-nav" aria-label="Primary">
-        <a class="brand" href="#top">Aldo Visconti</a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+    <main>
+      {/* Hero Section */}
+      <Hero
+        title="Aldo Visconti"
+        tagline="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."
+        ctaPrimary={{ label: 'View Projects', href: '#projects' }}
+        ctaSecondary={{ label: 'Email Me', href: 'mailto:l.c.aldovisconti@gmail.com' }}
+      />
 
-      <div class="hero-content">
-        <div class="hero-copy">
-          <p class="eyebrow">Software Engineer · MSc Student</p>
-          <h1>Building reliable software with a practical, product-first mindset.</h1>
-          <p>
-            I graduated in Engineering and Computer Sciences at Alma Mater Studiorum - University of Bologna.
-            I am now pursuing a Master's degree while continuing to turn technical complexity into clean user experiences.
+      {/* About Section */}
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About</h2>
+          <p class="prose">
+            I graduated in Engineering and Computer Sciences at Alma Mater Studiorum - University of Bologna. I am now pursuing a Master's degree while continuing to turn technical complexity into clean user experiences.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#projects">Explore Projects</a>
-            <a class="button button-ghost" href="mailto:l.c.aldovisconti@gmail.com">Email Me</a>
+          <p class="prose text-muted">
+            I am passionate about software development and motivated by curiosity: I like to understand how things work, explore new technologies, and keep improving every day. I enjoy solving problems, learning from real projects, and stepping into new challenges with an open and proactive mindset.
+          </p>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section class="section">
+        <div class="container">
+          <h2>Experience</h2>
+          <div class="experience-list">
+            <div class="experience-item">
+              <p class="text-xs text-faint">Imola, Italy · Mar 2024 - May 2024</p>
+              <h3>CP SISTEMI · Software Engineer Intern</h3>
+              <p class="text-muted">Ported industrial communication drivers from Java into a new framework for firmware adaptation.</p>
+            </div>
+            <div class="experience-item">
+              <p class="text-xs text-faint">Crotone, Italy · Aug 2020 - Oct 2020</p>
+              <h3>RENTBOAT · Front Office Manager</h3>
+              <p class="text-muted">Managed check-in/check-out, booking workflows, and fleet maintenance coordination.</p>
+            </div>
           </div>
         </div>
-        <div class="hero-photo-wrap">
-          <img src="/assets/aldo.jpg" alt="Portrait of Aldo Visconti" class="hero-photo" />
-        </div>
-      </div>
-    </header>
-
-    <main class="content">
-      <section class="panel" id="about">
-        <h2>About</h2>
-        <p>
-          I am passionate about software development and motivated by curiosity: I like to understand how things work,
-          explore new technologies, and keep improving every day. I enjoy solving problems, learning from real projects,
-          and stepping into new challenges with an open and proactive mindset.
-        </p>
       </section>
 
-      <section class="panel" id="experience">
-        <h2>Experience</h2>
-        <div class="card-grid">
-          <article class="card">
-            <p class="card-meta">Imola, Italy · Mar 2024 - May 2024</p>
-            <h3>CP SISTEMI · Software Engineer Intern</h3>
-            <p>Ported industrial communication drivers from Java into a new framework for firmware adaptation.</p>
-          </article>
-          <article class="card">
-            <p class="card-meta">Crotone, Italy · Aug 2020 - Oct 2020</p>
-            <h3>RENTBOAT · Front Office Manager</h3>
-            <p>Managed check-in/check-out, booking workflows, and fleet maintenance coordination.</p>
-          </article>
+      {/* Projects Section */}
+      <section id="projects" class="section">
+        <div class="container">
+          <h2>Projects</h2>
+          <div class="projects-grid">
+            {projects.map((project) => (
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                tags={project.tags}
+                link={project.link}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
-      <section class="panel" id="projects">
-        <h2>Projects</h2>
-        <div class="card-grid">
-          <article class="card">
-            <h3>PixArt</h3>
-            <p>Pixel art editor built with Java and JavaFX, including mini-games and custom drawing tools.</p>
-            <a href="https://github.com/LoCh3f/OOP22-pixArt-gen" target="_blank" rel="noreferrer">View on GitHub</a>
-          </article>
-          <article class="card">
-            <h3>AgroNET</h3>
-            <p>Social network platform for agriculture professionals developed with HTML, CSS, JS, PHP and SQL.</p>
-            <a href="https://github.com/Fre0Grella/AgroNET" target="_blank" rel="noreferrer">View on GitHub</a>
-          </article>
-          <article class="card">
-            <h3>ScoutKT</h3>
-            <p>Real-time crypto market tracking app made in Kotlin with Jetpack Compose.</p>
-            <a href="https://github.com/LoCh3f/ScoutKT" target="_blank" rel="noreferrer">View on GitHub</a>
-          </article>
-          <article class="card">
-            <h3>Orbital (Work in progress)</h3>
-            <p>
-              Microservices platform that aggregates real-time cryptocurrency market data and financial news, with RESTful APIs,
-              Docker-based deployment, and monitoring through Prometheus and Grafana.
-            </p>
-            <a href="https://github.com/LoCh3f/orbital" target="_blank" rel="noreferrer">View on GitHub</a>
-          </article>
-          <article class="card">
-            <h3>Poool Game</h3>
-            <p>
-              Concurrent pool-like game developed for PCD (a.y. 2025-2026, ISI LM UNIBO Cesena), where a human player and a bot
-              compete through physics simulation.
-            </p>
-            <a href="https://github.com/LoCh3f/assigment-1" target="_blank" rel="noreferrer">View on GitHub</a>
-          </article>
+      {/* Skills Section */}
+      <section class="section">
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="skills-list">
+            {skills.map((skill) => (
+              <span class="skill-item">{skill}</span>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section class="panel" id="skills">
-        <h2>Skills</h2>
-        <ul class="skill-list" aria-label="Skills and technologies">
-          <li>Assembly (IA-32)</li>
-          <li>C</li>
-          <li>C#</li>
-          <li>Java</li>
-          <li>Kotlin</li>
-          <li>SQL</li>
-          <li>PHP</li>
-          <li>JavaScript</li>
-          <li>HTML/CSS</li>
-          <li>Git</li>
-          <li>Docker</li>
-          <li>Verse for Unreal Engine</li>
-        </ul>
-      </section>
-
-      <section class="panel panel-contact" id="contact">
-        <h2>Contact</h2>
-        <p>Open to internship and junior software opportunities.</p>
-        <p>Email: <a href="mailto:l.c.aldovisconti@gmail.com">l.c.aldovisconti@gmail.com</a></p>
-        <p>GitHub: <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer">github.com/LoCh3f</a></p>
+      {/* Contact Section */}
+      <section id="contact" class="section">
+        <div class="container">
+          <h2>Contact</h2>
+          <p class="prose text-muted">Open to internship and junior software opportunities.</p>
+          <p class="prose">
+            Email: <a href="mailto:l.c.aldovisconti@gmail.com">l.c.aldovisconti@gmail.com</a>
+          </p>
+          <p class="prose">
+            GitHub: <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer">github.com/LoCh3f</a>
+          </p>
+        </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>&copy; {year} Aldo Visconti. All rights reserved.</p>
-    </footer>
+    <Footer name="Aldo Visconti" social={socialLinks} />
   </body>
 </html>
+
+<style>
+  main {
+    flex: 1;
+  }
+
+  .section {
+    padding-block: var(--spacing-section);
+    border-bottom: 1px solid oklch(from var(--color-border) l c h / 0.5);
+  }
+
+  .section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section h2 {
+    margin-bottom: 2rem;
+  }
+
+  .section p {
+    margin-bottom: 1rem;
+  }
+
+  .section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .experience-item h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .experience-item p {
+    margin-bottom: 0.5rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 1.5rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .skill-item {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-sm);
+    background-color: var(--color-surface-offset);
+    color: var(--color-text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+  }
+
+  @media (max-width: 640px) {
+    .section {
+      padding-block: var(--spacing-section);
+    }
+  }
+</style>

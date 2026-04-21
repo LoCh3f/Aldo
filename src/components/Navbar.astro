@@ -1,0 +1,81 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  navLinks?: { label: string; href: string }[];
+}
+
+const { navLinks = [] } = Astro.props;
+---
+
+<nav class="navbar" aria-label="Primary navigation">
+  <div class="navbar-container">
+    <a href="/" class="navbar-brand">Aldo Visconti</a>
+
+    <div class="navbar-links">
+      {navLinks.map((link) => (
+        <a href={link.href} class="navbar-link">{link.label}</a>
+      ))}
+    </div>
+
+    <ThemeToggle />
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid oklch(from var(--color-text) l c h / 0.08);
+    backdrop-filter: blur(8px);
+    transition: background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--padding-inline);
+    padding-block: 1rem;
+  }
+
+  .navbar-brand {
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    letter-spacing: -0.01em;
+    transition: color 180ms ease;
+  }
+
+  .navbar-brand:hover {
+    color: var(--color-primary);
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .navbar-link {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .navbar-link:hover {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .navbar-links {
+      gap: 1rem;
+      display: none;
+    }
+  }
+</style>

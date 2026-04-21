@@ -1,0 +1,91 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags?: string[];
+  link?: string;
+}
+
+const { title, description, tags = [], link } = Astro.props;
+---
+
+<article class="project-card">
+  <h3 class="card-title">{title}</h3>
+  <p class="card-description">{description}</p>
+
+  {tags.length > 0 && (
+    <div class="card-tags">
+      {tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+  )}
+
+  {link && (
+    <a href={link} target="_blank" rel="noreferrer" class="card-link">
+      View Project
+    </a>
+  )}
+</article>
+
+<style>
+  .project-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 180ms ease, transform 180ms ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .project-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    margin-bottom: 0.75rem;
+  }
+
+  .card-description {
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--text-xs);
+    background-color: var(--color-surface-offset);
+    color: var(--color-text-muted);
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .card-link {
+    align-self: flex-start;
+    color: var(--color-primary);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 180ms ease;
+    margin-top: auto;
+  }
+
+  .card-link:hover {
+    color: var(--color-primary-hover);
+  }
+</style>
