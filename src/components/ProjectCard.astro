@@ -10,6 +10,7 @@ const { title, description, tags = [], link } = Astro.props;
 ---
 
 <article class="project-card">
+  <div class="card-topline"></div>
   <h3 class="card-title">{title}</h3>
   <p class="card-description">{description}</p>
 
@@ -30,14 +31,23 @@ const { title, description, tags = [], link } = Astro.props;
 
 <style>
   .project-card {
+    position: relative;
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 0.75rem;
+    border-radius: 1rem;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     transition: box-shadow 180ms ease, transform 180ms ease;
     box-shadow: var(--shadow-sm);
+  }
+
+  .card-topline {
+    width: 3rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(90deg, var(--color-primary), transparent);
   }
 
   .project-card:hover {
@@ -83,6 +93,10 @@ const { title, description, tags = [], link } = Astro.props;
     text-decoration: none;
     transition: color 180ms ease;
     margin-top: auto;
+  }
+
+  .card-link::after {
+    content: ' ↗';
   }
 
   .card-link:hover {

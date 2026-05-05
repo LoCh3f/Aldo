@@ -90,6 +90,7 @@ body {
   background-color: var(--color-bg);
   line-height: 1.6;
   min-height: 100dvh;
+  overflow-x: hidden;
   transition: background-color 200ms ease, color 200ms ease;
 }
 
@@ -99,8 +100,16 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at top left, oklch(from var(--color-primary) l c h / 0.08), transparent 35%),
-    radial-gradient(circle at top right, oklch(from var(--color-primary-hover) l c h / 0.06), transparent 32%);
+    radial-gradient(circle at top left, oklch(from var(--color-primary) l c h / 0.1), transparent 30%),
+    radial-gradient(circle at 85% 12%, oklch(from var(--color-primary-hover) l c h / 0.08), transparent 26%),
+    linear-gradient(180deg, transparent 0%, oklch(from var(--color-bg) l c h / 0.1) 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(100% - 1px),
+      oklch(from var(--color-border) l c h / 0.08) 100%
+    );
+  opacity: 0.9;
 }
 
 .skip-link {

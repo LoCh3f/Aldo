@@ -47,13 +47,11 @@ const projects = [
 const skills = [
   'Assembly (IA-32)',
   'C',
-  'C#',
   'Java',
   'Kotlin',
   'SQL',
   'PHP',
   'JavaScript',
-  'TypeScript',
   'HTML/CSS',
   'Git',
   'Docker',
@@ -63,6 +61,12 @@ const skills = [
 const socialLinks = [
   { label: 'GitHub', href: 'https://github.com/LoCh3f' },
   { label: 'Email', href: 'mailto:l.c.aldovisconti@gmail.com' },
+];
+
+const heroHighlights = [
+  { label: 'Current focus', value: 'MSc student' },
+  { label: 'Strength', value: 'Adaptability' },
+  { label: 'Location', value: 'Italy' },
 ];
 
 const siteUrl = 'https://loch3f.github.io';
@@ -104,12 +108,38 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
         <Hero
           title="Aldo Visconti"
           tagline="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."
+          highlights={heroHighlights}
           ctaPrimary={{ label: 'View Projects', href: '#projects' }}
           ctaSecondary={{ label: 'Email Me', href: 'mailto:l.c.aldovisconti@gmail.com' }}
         />
 
-        {/* About Section */}
-        <section id="about" class="section">
+        <section class="section section-card">
+          <div class="container">
+            <div class="section-heading">
+              <h2>Skills</h2>
+            </div>
+
+            <div class="skills-carousel" aria-label="Skills carousel">
+              <div class="skills-viewport">
+                <div class="skills-track">
+                  <div class="skills-list">
+                    {skills.map((skill) => (
+                      <span class="skill-item">{skill}</span>
+                    ))}
+                  </div>
+
+                  <div class="skills-list" aria-hidden="true">
+                    {skills.map((skill) => (
+                      <span class="skill-item">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="section section-card">
           <div class="container">
             <h2>About</h2>
             <p class="prose">
@@ -121,8 +151,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        {/* Experience Section */}
-        <section class="section">
+        <section class="section section-card">
           <div class="container">
             <h2>Experience</h2>
             <div class="experience-list">
@@ -140,8 +169,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" class="section">
+        <section id="projects" class="section section-card">
           <div class="container">
             <h2>Projects</h2>
             <div class="projects-grid">
@@ -157,20 +185,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section class="section">
-          <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-list">
-              {skills.map((skill) => (
-                <span class="skill-item">{skill}</span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" class="section">
+        <section id="contact" class="section section-card">
           <div class="container">
             <h2>Contact</h2>
             <p class="prose text-muted">Open to internship and junior software opportunities.</p>
@@ -197,15 +212,41 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
   .section {
     padding-block: var(--spacing-section);
     scroll-margin-top: 6.5rem;
-    border-bottom: 1px solid oklch(from var(--color-border) l c h / 0.5);
   }
 
-  .section:last-of-type {
-    border-bottom: none;
+  .section-card {
+    margin-top: 1.25rem;
+    padding-block: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+    border: 1px solid oklch(from var(--color-border) l c h / 0.75);
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, oklch(from var(--color-surface) l c h / 0.96), oklch(from var(--color-surface) l c h / 0.88));
+    box-shadow: var(--shadow-sm);
+  }
+
+  .section-card + .section-card {
+    margin-top: 1rem;
   }
 
   .section h2 {
     margin-bottom: 2rem;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-heading h2 {
+    margin-bottom: 0;
+  }
+
+  .section-heading p {
+    margin-bottom: 0;
+    max-width: 30rem;
+    text-align: right;
   }
 
   .section p {
@@ -230,6 +271,13 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
     margin-bottom: 0.5rem;
   }
 
+  .experience-item {
+    padding: 1rem 1rem 1rem 1.1rem;
+    border-left: 2px solid oklch(from var(--color-primary) l c h / 0.35);
+    background-color: oklch(from var(--color-bg) l c h / 0.32);
+    border-radius: 0.75rem;
+  }
+
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
@@ -238,23 +286,93 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
 
   .skills-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.75rem;
   }
 
   .skill-item {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     font-size: var(--text-sm);
-    background-color: var(--color-surface-offset);
-    color: var(--color-text-muted);
+    background-color: oklch(from var(--color-surface-offset) l c h / 0.9);
+    color: var(--color-text);
     padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
+    border: 1px solid oklch(from var(--color-border) l c h / 0.65);
+    border-radius: 9999px;
+    min-width: max-content;
+  }
+
+  .skills-carousel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid oklch(from var(--color-border) l c h / 0.65);
+    border-radius: 1rem;
+    background: linear-gradient(90deg, oklch(from var(--color-surface) l c h / 0.92), oklch(from var(--color-surface-offset) l c h / 0.72));
+    box-shadow: var(--shadow-sm);
+  }
+
+  .skills-viewport {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+
+  .skills-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: skills-marquee 28s linear infinite;
+  }
+
+  .skills-list {
+    display: flex;
+    gap: 0.75rem;
+    width: max-content;
+    padding: 0.75rem;
+  }
+
+  .skills-carousel:hover .skills-track,
+  .skills-carousel:focus-within .skills-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes skills-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   @media (max-width: 640px) {
     .section {
       padding-block: var(--spacing-section);
+    }
+
+    .section-card {
+      border-radius: 1.125rem;
+    }
+
+    .section-heading {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    .section-heading p {
+      text-align: left;
+    }
+
+    .skills-carousel {
+      border-radius: 0.875rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skills-track {
+      animation: none;
+      transform: none;
     }
   }
 </style>

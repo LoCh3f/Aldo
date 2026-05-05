@@ -2,32 +2,50 @@
 interface Props {
   title: string;
   tagline: string;
+  eyebrow?: string;
+  highlights?: { label: string; value: string }[];
   ctaPrimary?: { label: string; href: string };
   ctaSecondary?: { label: string; href: string };
 }
 
-const { title, tagline, ctaPrimary, ctaSecondary } = Astro.props;
+const { title, tagline, eyebrow = 'Portfolio', highlights = [], ctaPrimary, ctaSecondary } = Astro.props;
 ---
 
 <section class="hero">
   <div class="container">
-    <h1 class="hero-title">{title}</h1>
-    <p class="hero-tagline text-muted">{tagline}</p>
-
-    {(ctaPrimary || ctaSecondary) && (
-      <div class="hero-ctas">
-        {ctaPrimary && (
-          <a href={ctaPrimary.href} class="btn btn-primary">
-            {ctaPrimary.label}
-          </a>
-        )}
-        {ctaSecondary && (
-          <a href={ctaSecondary.href} class="btn btn-ghost">
-            {ctaSecondary.label}
-          </a>
-        )}
+    <div class="hero-panel">
+      <p class="hero-eyebrow">{eyebrow}</p>
+      <div class="hero-copy">
+        <h1 class="hero-title">{title}</h1>
+        <p class="hero-tagline text-muted">{tagline}</p>
       </div>
-    )}
+
+      {highlights.length > 0 && (
+        <dl class="hero-highlights">
+          {highlights.map((item) => (
+            <div class="hero-highlight">
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {(ctaPrimary || ctaSecondary) && (
+        <div class="hero-ctas">
+          {ctaPrimary && (
+            <a href={ctaPrimary.href} class="btn btn-primary">
+              {ctaPrimary.label}
+            </a>
+          )}
+          {ctaSecondary && (
+            <a href={ctaSecondary.href} class="btn btn-ghost">
+              {ctaSecondary.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
   </div>
 </section>
 
@@ -36,16 +54,100 @@ const { title, tagline, ctaPrimary, ctaSecondary } = Astro.props;
     padding-block: var(--spacing-section);
   }
 
+  .hero-panel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+    border: 1px solid oklch(from var(--color-border) l c h / 0.8);
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(180deg, oklch(from var(--color-surface) l c h / 0.95), oklch(from var(--color-surface) l c h / 0.88)),
+      radial-gradient(circle at top right, oklch(from var(--color-primary) l c h / 0.08), transparent 38%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-panel::after {
+    content: '';
+    position: absolute;
+    inset: auto -12% -36% auto;
+    width: 18rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, oklch(from var(--color-primary) l c h / 0.16), transparent 68%);
+    pointer-events: none;
+    filter: blur(6px);
+  }
+
+  .hero-eyebrow {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background-color: var(--color-primary);
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+  }
+
   .hero-title {
     margin-bottom: 1rem;
   }
 
   .hero-tagline {
     font-size: var(--text-lg);
-    margin-bottom: 2rem;
+    margin-bottom: 0;
+  }
+
+  .hero-highlights {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem 1rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background-color: oklch(from var(--color-bg) l c h / 0.45);
+  }
+
+  .hero-highlight dt {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-highlight dd {
+    color: var(--color-text);
+    font-size: var(--text-base);
+    font-weight: 500;
   }
 
   .hero-ctas {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -86,6 +188,15 @@ const { title, tagline, ctaPrimary, ctaSecondary } = Astro.props;
   }
 
   @media (max-width: 640px) {
+    .hero-panel {
+      padding: 1.25rem;
+      border-radius: 1.125rem;
+    }
+
+    .hero-highlights {
+      grid-template-columns: 1fr;
+    }
+
     .btn {
       width: 100%;
     }
