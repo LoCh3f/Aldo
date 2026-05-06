@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-j7pv25f6> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Aldo Visconti - Software Engineer & MSc Student. Building reliable software with a practical, product-first mindset."><link rel="canonical" href="https://loch3f.github.io/Aldo/"><meta property="og:type" content="website"><meta property="og:title" content="Aldo Visconti | Software Engineer"><meta property="og:description" content="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."><meta property="og:url" content="https://loch3f.github.io/Aldo/"><meta property="og:image" content="https://loch3f.github.io/Aldo/assets/aldo.jpg"><meta property="og:site_name" content="Aldo Visconti"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Aldo Visconti | Software Engineer"><meta name="twitter:description" content="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."><meta name="twitter:image" content="https://loch3f.github.io/Aldo/assets/aldo.jpg"><title>Aldo Visconti | Software Engineer</title><link rel="stylesheet" href="/Aldo/_astro/index.Da7q7fHn.css"></head> <body data-astro-cid-j7pv25f6> <a class="skip-link" href="#main-content" data-astro-cid-j7pv25f6>Skip to main content</a> <nav class="navbar" aria-label="Primary navigation" data-astro-cid-5blmo7yk> <div class="navbar-container" data-astro-cid-5blmo7yk> <a href="/Aldo" class="navbar-brand" data-astro-cid-5blmo7yk>Aldo Visconti</a> <div class="navbar-links" data-astro-cid-5blmo7yk> <a href="#about" class="navbar-link" data-astro-cid-5blmo7yk>About</a><a href="#projects" class="navbar-link" data-astro-cid-5blmo7yk>Projects</a><a href="#contact" class="navbar-link" data-astro-cid-5blmo7yk>Contact</a> </div> <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark/light mode" data-astro-cid-x3pjskd3> <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-x3pjskd3> <circle cx="12" cy="12" r="5" data-astro-cid-x3pjskd3></circle> <line x1="12" y1="1" x2="12" y2="3" data-astro-cid-x3pjskd3></line> <line x1="12" y1="21" x2="12" y2="23" data-astro-cid-x3pjskd3></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" data-astro-cid-x3pjskd3></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" data-astro-cid-x3pjskd3></line> <line x1="1" y1="12" x2="3" y2="12" data-astro-cid-x3pjskd3></line> <line x1="21" y1="12" x2="23" y2="12" data-astro-cid-x3pjskd3></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" data-astro-cid-x3pjskd3></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" data-astro-cid-x3pjskd3></line> </svg> <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-astro-cid-x3pjskd3> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-x3pjskd3></path> </svg> </button>  <script>
+  (function initTheme() {
+    const themeTokens = {
+      light: {
+        '--color-bg': '#f7f6f2',
+        '--color-surface': '#f9f8f5',
+        '--color-surface-offset': '#edeae5',
+        '--color-border': '#d4d1ca',
+        '--color-text': '#28251d',
+        '--color-text-muted': '#7a7974',
+        '--color-text-faint': '#bab9b4',
+        '--color-primary': '#01696f',
+        '--color-primary-hover': '#0c4e54',
+        '--shadow-sm': '0 1px 2px oklch(0.2 0.01 80 / 0.06)',
+        '--shadow-md': '0 4px 12px oklch(0.2 0.01 80 / 0.08)',
+      },
+      dark: {
+        '--color-bg': '#171614',
+        '--color-surface': '#1c1b19',
+        '--color-surface-offset': '#22211f',
+        '--color-border': '#393836',
+        '--color-text': '#cdccca',
+        '--color-text-muted': '#797876',
+        '--color-text-faint': '#5a5957',
+        '--color-primary': '#4f98a3',
+        '--color-primary-hover': '#227f8b',
+        '--shadow-sm': '0 1px 2px oklch(0 0 0 / 0.2)',
+        '--shadow-md': '0 4px 12px oklch(0 0 0 / 0.3)',
+      },
+    };
+
+    let currentTheme = detectSystemTheme();
+
+    function detectSystemTheme() {
+      const htmlTheme = document.documentElement.getAttribute('data-theme');
+      if (htmlTheme === 'dark' || htmlTheme === 'light') {
+        return htmlTheme;
+      }
+
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    }
+
+    function applyTheme(theme) {
+      const root = document.documentElement;
+      const variables = themeTokens[theme];
+
+      root.setAttribute('data-theme', theme);
+      root.style.colorScheme = theme;
+
+      for (const [name, value] of Object.entries(variables)) {
+        root.style.setProperty(name, value);
+      }
+
+      currentTheme = theme;
+      updateToggleButton();
+    }
+
+    function updateToggleButton() {
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+
+      const label =
+        currentTheme === 'light'
+          ? 'Switch to dark mode'
+          : 'Switch to light mode';
+      toggle.setAttribute('aria-label', label);
+    }
+
+    function toggleTheme() {
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(newTheme);
+    }
+
+    function init() {
+      const toggle = document.getElementById('theme-toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', toggleTheme);
+      updateToggleButton();
+    }
+
+    applyTheme(currentTheme);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+    } else {
+      init();
+    }
+  })();
+</script> </div> </nav>  <div class="page-shell" data-astro-cid-j7pv25f6> <main id="main-content" data-astro-cid-j7pv25f6>  <section class="hero" data-astro-cid-bbe6dxrz> <div class="container" data-astro-cid-bbe6dxrz> <div class="hero-panel" data-astro-cid-bbe6dxrz> <p class="hero-eyebrow" data-astro-cid-bbe6dxrz>Portfolio</p> <div class="hero-copy" data-astro-cid-bbe6dxrz> <h1 class="hero-title" data-astro-cid-bbe6dxrz>Aldo Visconti</h1> <p class="hero-tagline text-muted" data-astro-cid-bbe6dxrz>Software Engineer &amp; MSc Student building reliable software with a practical, product-first mindset.</p> </div> <dl class="hero-highlights" data-astro-cid-bbe6dxrz> <div class="hero-highlight" data-astro-cid-bbe6dxrz> <dt data-astro-cid-bbe6dxrz>Current focus</dt> <dd data-astro-cid-bbe6dxrz>MSc student</dd> </div><div class="hero-highlight" data-astro-cid-bbe6dxrz> <dt data-astro-cid-bbe6dxrz>Strength</dt> <dd data-astro-cid-bbe6dxrz>Adaptability</dd> </div><div class="hero-highlight" data-astro-cid-bbe6dxrz> <dt data-astro-cid-bbe6dxrz>Location</dt> <dd data-astro-cid-bbe6dxrz>Italy</dd> </div> </dl> <div class="hero-ctas" data-astro-cid-bbe6dxrz> <a href="#projects" class="btn btn-primary" data-astro-cid-bbe6dxrz> View Projects </a> <a href="mailto:l.c.aldovisconti@gmail.com" class="btn btn-ghost" data-astro-cid-bbe6dxrz> Email Me </a> </div> </div> </div> </section>  <section class="section section-card" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <div class="section-heading" data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>Skills</h2> </div> <div class="skills-carousel" aria-label="Skills carousel" data-astro-cid-j7pv25f6> <div class="skills-viewport" data-astro-cid-j7pv25f6> <div class="skills-track" data-astro-cid-j7pv25f6> <div class="skills-list" data-astro-cid-j7pv25f6> <span class="skill-item" data-astro-cid-j7pv25f6>Assembly (IA-32)</span><span class="skill-item" data-astro-cid-j7pv25f6>C</span><span class="skill-item" data-astro-cid-j7pv25f6>Java</span><span class="skill-item" data-astro-cid-j7pv25f6>Kotlin</span><span class="skill-item" data-astro-cid-j7pv25f6>SQL</span><span class="skill-item" data-astro-cid-j7pv25f6>PHP</span><span class="skill-item" data-astro-cid-j7pv25f6>JavaScript</span><span class="skill-item" data-astro-cid-j7pv25f6>HTML/CSS</span><span class="skill-item" data-astro-cid-j7pv25f6>Git</span><span class="skill-item" data-astro-cid-j7pv25f6>Docker</span><span class="skill-item" data-astro-cid-j7pv25f6>Verse for Unreal Engine</span> </div> <div class="skills-list" aria-hidden="true" data-astro-cid-j7pv25f6> <span class="skill-item" data-astro-cid-j7pv25f6>Assembly (IA-32)</span><span class="skill-item" data-astro-cid-j7pv25f6>C</span><span class="skill-item" data-astro-cid-j7pv25f6>Java</span><span class="skill-item" data-astro-cid-j7pv25f6>Kotlin</span><span class="skill-item" data-astro-cid-j7pv25f6>SQL</span><span class="skill-item" data-astro-cid-j7pv25f6>PHP</span><span class="skill-item" data-astro-cid-j7pv25f6>JavaScript</span><span class="skill-item" data-astro-cid-j7pv25f6>HTML/CSS</span><span class="skill-item" data-astro-cid-j7pv25f6>Git</span><span class="skill-item" data-astro-cid-j7pv25f6>Docker</span><span class="skill-item" data-astro-cid-j7pv25f6>Verse for Unreal Engine</span> </div> </div> </div> </div> </div> </section> <section id="about" class="section section-card" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>About</h2> <p class="prose" data-astro-cid-j7pv25f6>
+I graduated in Engineering and Computer Sciences at Alma Mater Studiorum - University of Bologna. I am now pursuing a Master's degree while continuing to turn technical complexity into clean user experiences.
+</p> <p class="prose text-muted" data-astro-cid-j7pv25f6>
+I am passionate about software development and motivated by curiosity: I like to understand how things work, explore new technologies, and keep improving every day. I enjoy solving problems, learning from real projects, and stepping into new challenges with an open and proactive mindset.
+</p> </div> </section> <section class="section section-card" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>Experience</h2> <div class="experience-list" data-astro-cid-j7pv25f6> <div class="experience-item" data-astro-cid-j7pv25f6> <p class="text-xs text-faint" data-astro-cid-j7pv25f6>Imola, Italy · Mar 2024 - May 2024</p> <h3 data-astro-cid-j7pv25f6>CP SISTEMI · Software Engineer Intern</h3> <p class="text-muted" data-astro-cid-j7pv25f6>Ported industrial communication drivers from Java into a new framework for firmware adaptation.</p> </div> <div class="experience-item" data-astro-cid-j7pv25f6> <p class="text-xs text-faint" data-astro-cid-j7pv25f6>Crotone, Italy · Aug 2020 - Oct 2020</p> <h3 data-astro-cid-j7pv25f6>RENTBOAT · Front Office Manager</h3> <p class="text-muted" data-astro-cid-j7pv25f6>Managed check-in/check-out, booking workflows, and fleet maintenance coordination.</p> </div> </div> </div> </section> <section id="projects" class="section section-card" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>Projects</h2> <div class="projects-grid" data-astro-cid-j7pv25f6> <article class="project-card" data-astro-cid-mspuyifq> <div class="card-topline" data-astro-cid-mspuyifq></div> <h3 class="card-title" data-astro-cid-mspuyifq>PixArt</h3> <p class="card-description" data-astro-cid-mspuyifq>Pixel art editor built with Java and JavaFX, including mini-games and custom drawing tools.</p> <div class="card-tags" data-astro-cid-mspuyifq> <span class="tag" data-astro-cid-mspuyifq>Java</span><span class="tag" data-astro-cid-mspuyifq>JavaFX</span><span class="tag" data-astro-cid-mspuyifq>Graphics</span> </div> <a href="https://github.com/LoCh3f/OOP22-pixArt-gen" target="_blank" rel="noreferrer noopener" class="card-link" data-astro-cid-mspuyifq>
+View Project
+</a> </article> <article class="project-card" data-astro-cid-mspuyifq> <div class="card-topline" data-astro-cid-mspuyifq></div> <h3 class="card-title" data-astro-cid-mspuyifq>AgroNET</h3> <p class="card-description" data-astro-cid-mspuyifq>Social network platform for agriculture professionals developed with HTML, CSS, JS, PHP and SQL.</p> <div class="card-tags" data-astro-cid-mspuyifq> <span class="tag" data-astro-cid-mspuyifq>PHP</span><span class="tag" data-astro-cid-mspuyifq>SQL</span><span class="tag" data-astro-cid-mspuyifq>Web</span> </div> <a href="https://github.com/Fre0Grella/AgroNET" target="_blank" rel="noreferrer noopener" class="card-link" data-astro-cid-mspuyifq>
+View Project
+</a> </article> <article class="project-card" data-astro-cid-mspuyifq> <div class="card-topline" data-astro-cid-mspuyifq></div> <h3 class="card-title" data-astro-cid-mspuyifq>ScoutKT</h3> <p class="card-description" data-astro-cid-mspuyifq>Real-time crypto market tracking app made in Kotlin with Jetpack Compose.</p> <div class="card-tags" data-astro-cid-mspuyifq> <span class="tag" data-astro-cid-mspuyifq>Kotlin</span><span class="tag" data-astro-cid-mspuyifq>Android</span><span class="tag" data-astro-cid-mspuyifq>Compose</span> </div> <a href="https://github.com/LoCh3f/ScoutKT" target="_blank" rel="noreferrer noopener" class="card-link" data-astro-cid-mspuyifq>
+View Project
+</a> </article> <article class="project-card" data-astro-cid-mspuyifq> <div class="card-topline" data-astro-cid-mspuyifq></div> <h3 class="card-title" data-astro-cid-mspuyifq>Orbital</h3> <p class="card-description" data-astro-cid-mspuyifq>Microservices platform that aggregates real-time cryptocurrency market data and financial news, with RESTful APIs, Docker-based deployment, and monitoring through Prometheus and Grafana.</p> <div class="card-tags" data-astro-cid-mspuyifq> <span class="tag" data-astro-cid-mspuyifq>Docker</span><span class="tag" data-astro-cid-mspuyifq>Microservices</span><span class="tag" data-astro-cid-mspuyifq>Crypto</span> </div> <a href="https://github.com/LoCh3f/orbital" target="_blank" rel="noreferrer noopener" class="card-link" data-astro-cid-mspuyifq>
+View Project
+</a> </article> <article class="project-card" data-astro-cid-mspuyifq> <div class="card-topline" data-astro-cid-mspuyifq></div> <h3 class="card-title" data-astro-cid-mspuyifq>Poool Game</h3> <p class="card-description" data-astro-cid-mspuyifq>Concurrent pool-like game developed for PCD, where a human player and a bot compete through physics simulation.</p> <div class="card-tags" data-astro-cid-mspuyifq> <span class="tag" data-astro-cid-mspuyifq>Java</span><span class="tag" data-astro-cid-mspuyifq>Concurrency</span><span class="tag" data-astro-cid-mspuyifq>Physics</span> </div> <a href="https://github.com/LoCh3f/assigment-1" target="_blank" rel="noreferrer noopener" class="card-link" data-astro-cid-mspuyifq>
+View Project
+</a> </article>  </div> </div> </section> <section id="contact" class="section section-card" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>Contact</h2> <p class="prose text-muted" data-astro-cid-j7pv25f6>Open to internship and junior software opportunities.</p> <p class="prose" data-astro-cid-j7pv25f6>
+Email: <a href="mailto:l.c.aldovisconti@gmail.com" data-astro-cid-j7pv25f6>l.c.aldovisconti@gmail.com</a> </p> <p class="prose" data-astro-cid-j7pv25f6>
+GitHub: <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer noopener" data-astro-cid-j7pv25f6>github.com/LoCh3f</a> </p> </div> </section> </main> <footer class="footer" data-astro-cid-sz7xmlte> <div class="container footer-container" data-astro-cid-sz7xmlte> <p class="footer-copy text-xs" data-astro-cid-sz7xmlte>
+© 2026 Aldo Visconti. All rights reserved.
+</p> <div class="footer-social" data-astro-cid-sz7xmlte> <a href="https://github.com/LoCh3f" target="_blank" rel="noreferrer noopener" class="social-link text-xs" data-astro-cid-sz7xmlte> GitHub </a><a href="mailto:l.c.aldovisconti@gmail.com" class="social-link text-xs" data-astro-cid-sz7xmlte> Email </a> </div> </div> </footer>  </div> </body></html>
