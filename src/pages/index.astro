@@ -79,6 +79,7 @@ const siteUrl = 'https://loch3f.github.io';
 const basePath = '/Aldo';
 const canonicalUrl = `${siteUrl}${basePath}/`;
 const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
+const heroPhoto = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/assets/aldo.jpg`;
 ---
 
 <!doctype html>
@@ -114,12 +115,14 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
         <Hero
           title="Aldo Visconti"
           tagline="Software Engineer & MSc Student building reliable software with a practical, product-first mindset."
+          status="Open to work"
+          photo={heroPhoto}
           highlights={heroHighlights}
           ctaPrimary={{ label: 'View Projects', href: '#projects' }}
           ctaSecondary={{ label: 'Email Me', href: 'mailto:l.c.aldovisconti@gmail.com' }}
         />
 
-        <section class="section section-card">
+        <section class="section section-card" data-reveal>
           <div class="container">
             <div class="section-heading">
               <h2>Skills</h2>
@@ -145,7 +148,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        <section id="about" class="section section-card">
+        <section id="about" class="section section-card" data-reveal>
           <div class="container">
             <h2>About</h2>
             <p class="prose">
@@ -157,7 +160,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        <section class="section section-card">
+        <section class="section section-card" data-reveal>
           <div class="container">
             <h2>Experience</h2>
             <div class="experience-list">
@@ -175,7 +178,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        <section id="projects" class="section section-card">
+        <section id="projects" class="section section-card" data-reveal>
           <div class="container">
             <h2>Projects</h2>
             <div class="projects-grid">
@@ -191,7 +194,7 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
           </div>
         </section>
 
-        <section id="contact" class="section section-card">
+        <section id="contact" class="section section-card" data-reveal>
           <div class="container">
             <h2>Contact</h2>
             <p class="prose text-muted">Open to internship and junior software opportunities.</p>
@@ -207,6 +210,44 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
 
       <Footer name="Aldo Visconti" social={socialLinks} />
     </div>
+
+    <script is:inline>
+      (function initScrollReveal() {
+        function init() {
+          const items = document.querySelectorAll('[data-reveal]');
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          if (!items.length || reduceMotion || !('IntersectionObserver' in window)) return;
+
+          items.forEach((el) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(16px)';
+            el.style.transition = 'opacity 500ms ease, transform 500ms ease';
+          });
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.style.opacity = '1';
+                  entry.target.style.transform = 'none';
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15 }
+          );
+
+          items.forEach((el) => observer.observe(el));
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+          init();
+        }
+      })();
+    </script>
   </body>
 </html>
 
@@ -301,12 +342,20 @@ const socialImage = `${siteUrl}${basePath}/assets/aldo.jpg`;
     align-items: center;
     justify-content: center;
     font-size: var(--text-sm);
-    background-color: oklch(from var(--color-surface-offset) l c h / 0.9);
+    font-weight: 500;
+    background-color: oklch(from var(--color-surface-offset) l c h / 0.95);
     color: var(--color-text);
-    padding: 0.5rem 1rem;
-    border: 1px solid oklch(from var(--color-border) l c h / 0.65);
+    padding: 0.55rem 1.1rem;
+    border: 1px solid oklch(from var(--color-primary) l c h / 0.22);
     border-radius: 9999px;
     min-width: max-content;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+
+  .skill-item:hover {
+    border-color: oklch(from var(--color-primary) l c h / 0.55);
+    transform: translateY(-1px);
   }
 
   .skills-carousel {

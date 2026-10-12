@@ -7,10 +7,29 @@ interface Props {
 }
 
 const { title, description, tags = [], link } = Astro.props;
+
+const accentPalette = [
+  ['#01696f', '#4f98a3'],
+  ['#9f6b2f', '#d9a857'],
+  ['#6b4fae', '#a98fe0'],
+  ['#2f8f5b', '#7fd6a0'],
+  ['#ae3f5b', '#e08aa0'],
+];
+
+function hashString(value: string) {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+const [accentFrom, accentTo] = accentPalette[hashString(title) % accentPalette.length];
 ---
 
 <article class="project-card">
-  <div class="card-topline"></div>
+  <div class="card-topline" style={`background: linear-gradient(90deg, ${accentFrom}, ${accentTo})`}></div>
   <h3 class="card-title">{title}</h3>
   <p class="card-description">{description}</p>
 
@@ -35,19 +54,21 @@ const { title, description, tags = [], link } = Astro.props;
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 1.75rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     transition: box-shadow 180ms ease, transform 180ms ease;
     box-shadow: var(--shadow-sm);
   }
 
   .card-topline {
-    width: 3rem;
-    height: 0.25rem;
-    border-radius: 9999px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.3rem;
     margin-bottom: 1.25rem;
-    background: linear-gradient(90deg, var(--color-primary), transparent);
   }
 
   .project-card:hover {
@@ -87,19 +108,28 @@ const { title, description, tags = [], link } = Astro.props;
 
   .card-link {
     align-self: flex-start;
-    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text);
+    background-color: var(--color-surface-offset);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.5rem;
     font-size: var(--text-sm);
     font-weight: 500;
     text-decoration: none;
-    transition: color 180ms ease;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
     margin-top: auto;
   }
 
   .card-link::after {
-    content: ' ↗';
+    content: '↗';
   }
 
   .card-link:hover {
-    color: var(--color-primary-hover);
+    background-color: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
   }
 </style>
